@@ -24,15 +24,15 @@
 (defnc AppMap
   [{:keys [scientists]}]
   ($ Map {:width 700 :height 700 :center #js [50 4] :zoom 2.3}
-     (map-indexed #(let [scientist %2 index %]
+     (map-indexed
+      #(let [scientist %2 index %]
                      ($ Overlay
-                        {:anchor #js [
-                                      (:lat  (:bplace_geonameid scientist))
+                        {:anchor #js [(:lat  (:bplace_geonameid scientist))
                                       (:lon (:bplace_geonameid scientist))]
                                  :key index}
                         (d/img {:src (str "https://pantheon.world/images/profile/people/" (:id scientist) ".jpg")
                                 :style {:width 20}})))
-          scientists)))
+      scientists)))
 
 (defnc App []
   (let [[state set-state] (hooks/use-state {:name "Helix User"})]
