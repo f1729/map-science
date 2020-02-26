@@ -1,0 +1,6 @@
+node_modules
+js/
+/package-lock.json
+.shadow-cljs/
+/.cpcache
+.DS_Store
