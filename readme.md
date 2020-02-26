@@ -13,8 +13,6 @@ npm start
 Navigate to http://localhost:8888
 
 
-![](https://github.com/tastejs/todomvc-app-css/raw/master/screenshot.png)
-
 ## Resources + Support
 
 - [Helix GitHub Repo](https://github.com/Lokeh/helix)
