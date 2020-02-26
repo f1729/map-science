@@ -23,7 +23,6 @@
 
 (defnc AppMap
   [{:keys [scientists]}]
-  (js/console.log scientists)
   ($ Map {:width 700 :height 700 :center #js [50 4] :zoom 2.3}
      (map-indexed #(let [scientist %2 index %]
                      ($ Overlay
