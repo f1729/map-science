@@ -24,7 +24,7 @@
 
 
 (defnc RenderTrack
-  [{:keys [props children]}]
+  [{:keys [props children]} values]
   (d/div {:onMouseDown (.. props -onMouseDown)
           :onTouchStart (.. props -onTouchStart)
           :style (merge (:style props) {:width "100%" :height 36 :display "flex"})}
@@ -36,20 +36,20 @@
                          :display "flex"
                          :align-self "center"
                          :background (getTrackBackground
-                                      #js {:values #js [1409 1509] :colors #js ["#CCC" "#548BF4" "#CCC"] :min 1 :max 2020})}}
+                                      #js {:values values :colors #js ["#CCC" "#548BF4" "#CCC"] :min 1 :max 2020})}}
                 children)))
 
 (defnc RenderThumb
   [{:keys [props isDragged]}]
   (d/div {:style (merge (:style props)
-                                         {:height 42
-                                          :width 42
-                                          :border-radius 4
-                                          :background-color "#FFF"
-                                          :display "flex"
-                                          :justify-content "center"
-                                          :align-items "center"
-                                          :box-shadow "0px 2px 6px #AAA"}) }
+                        {:height 42
+                         :width 42
+                         :border-radius 4
+                         :background-color "#FFF"
+                         :display "flex"
+                         :justify-content "center"
+                         :align-items "center"
+                         :box-shadow "0px 2px 6px #AAA"}) }
          (d/div {:style {:height 16
                          :width 5
                          :background-color (if isDragged "#548BF4" "#CCC")}})))
@@ -60,13 +60,12 @@
   (let [[values set-values] (hooks/use-state #js [1409 1509])]
     (d/div
      ($ Range {:values values
-               :step 1
+               :step 100
                :min 1
                :max 2020
                :onChange #(set-values %)
-               :renderTrack #(RenderTrack %)
-               :renderThumb #(RenderThumb %)
-               })
+               :renderTrack #(RenderTrack % values)
+               :renderThumb #(RenderThumb %)})
      (d/output (let [[init end] values] (str init "-" end))))))
 
 
