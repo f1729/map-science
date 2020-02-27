@@ -9,6 +9,7 @@
             ["react-range" :as rrange :refer [getTrackBackground Range]]
             ["react-router-dom" :as rr]))
 
+
 (def scientists
   [{
     :id 18079
@@ -21,28 +22,38 @@
 
 (defn openData [scientist] (js/console.log (:name scientist) 1))
 
-(defnc RenderThumb
-  [{:keys [props isDragged]}]
-  (d/div {:style (merge (:style props)
-                        {:height 42
-                         :width 43
-                         :border-radius 4
-                         :background-color "#FFF"
-                         :display "flex"
-                         :justify-content "center"
-                         :align-items "center" })}
-         (d/div {:style {:height 16
-                         :width 5
-                         :background-color (if isDragged "#548BF4" "CCC")}})))
-
 
 (defnc RenderTrack
   [{:keys [props children]}]
   (d/div {:onMouseDown (.. props -onMouseDown)
           :onTouchStart (.. props -onTouchStart)
-          :style {:width "100%" :height 36 :display "flex"}}
-         (d/div {:ref (.. props -ref) }
-          children)))
+          :style (merge (:style props) {:width "100%" :height 36 :display "flex"})}
+         (d/div {:id "asdia9di9sid9as"
+                 :ref (.. props -ref)
+                 :style {:height 5
+                         :width "100%"
+                         :border-radius 4
+                         :display "flex"
+                         :align-self "center"
+                         :background (getTrackBackground
+                                      #js {:values #js [1409 1509] :colors #js ["#CCC" "#548BF4" "#CCC"] :min 1 :max 2020})}}
+                children)))
+
+(defnc RenderThumb
+  [{:keys [props isDragged]}]
+  (d/div {:style (merge (:style props)
+                                         {:height 42
+                                          :width 42
+                                          :border-radius 4
+                                          :background-color "#FFF"
+                                          :display "flex"
+                                          :justify-content "center"
+                                          :align-items "center"
+                                          :box-shadow "0px 2px 6px #AAA"}) }
+         (d/div {:style {:height 16
+                         :width 5
+                         :background-color (if isDragged "#548BF4" "#CCC")}})))
+
 
 
 (defnc RangeComponent []
@@ -52,18 +63,11 @@
                :step 1
                :min 1
                :max 2020
-               :on-change #(set-values (.. % -target -value))
+               :onChange #(set-values %)
                :renderTrack #(RenderTrack %)
                :renderThumb #(RenderThumb %)
-               }
-        (d/output "Hola"))
-
-     )))
-
-
-
-
-
+               })
+     (d/output (let [[init end] values] (str init "-" end))))))
 
 
 (defnc AppMap
