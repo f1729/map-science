@@ -12,17 +12,14 @@
 
 
 (def scientists
-  [{
-    :id 18079
+  [{:id 18079
     :name "Leonardo Da Vinci"
     :bplace_geonameid {:lat 43.783 :lon 11.25}}
-   {
-    :id 18021
+   {:id 18021
     :name "Luis C."
     :bplace_geonameid {:lat 27.783 :lon 1.25}}])
 
-(defn openData [scientist] (js/console.log (:name scientist) 1))
-
+(defn openData [scientist] (js/console.log (:name scientist)))
 
 (defnc RenderTrack
   [{:keys [props children values]}]
@@ -45,7 +42,7 @@
 
 (defnc RenderThumb
   [{:keys [props isDragged]}]
-  (d/div {:style (merge (:style props)
+  (d/div {:props props :style (merge (:style props)
                         {:height 42
                          :width 42
                          :border-radius 4
