@@ -1,5 +1,6 @@
 (ns map-science.core
   (:require	[clojure.string :as string]
+            [cljs-bean.core :as b]
             [helix.core :as hx :refer [$ <> defnc]]
             [helix.dom :as d]
             [helix.hooks :as hooks]
@@ -24,19 +25,22 @@
 
 
 (defnc RenderTrack
-  [{:keys [props children]} values]
-  (d/div {:onMouseDown (.. props -onMouseDown)
-          :onTouchStart (.. props -onTouchStart)
-          :style (merge (:style props) {:width "100%" :height 36 :display "flex"})}
+  [{:keys [props children values]}]
+  (d/div {:style (merge (:style props)
+                        {:width "100%" :height 36 :display "flex"})
+          & (dissoc props :style)}
          (d/div {:id "asdia9di9sid9as"
-                 :ref (.. props -ref)
+                 :ref (:ref props)
                  :style {:height 5
                          :width "100%"
                          :border-radius 4
                          :display "flex"
                          :align-self "center"
                          :background (getTrackBackground
-                                      #js {:values values :colors #js ["#CCC" "#548BF4" "#CCC"] :min 1 :max 2020})}}
+                                      #js {:values values
+                                           :colors #js ["#CCC" "#548BF4" "#CCC"]
+                                           :min 1
+                                           :max 2020})}}
                 children)))
 
 (defnc RenderThumb
@@ -49,7 +53,8 @@
                          :display "flex"
                          :justify-content "center"
                          :align-items "center"
-                         :box-shadow "0px 2px 6px #AAA"}) }
+                         :box-shadow "0px 2px 6px #AAA"})
+          & (dissoc props :style)}
          (d/div {:style {:height 16
                          :width 5
                          :background-color (if isDragged "#548BF4" "#CCC")}})))
@@ -64,8 +69,14 @@
                :min 1
                :max 2020
                :onChange #(set-values %)
-               :renderTrack #(RenderTrack % values)
-               :renderThumb #(RenderThumb %)})
+               :renderTrack #($ RenderTrack {:values values
+                                             & (-> (b/bean %)
+                                                   (update :props b/bean)
+                                                   (update-in [:props :style] b/bean))})
+               :renderThumb #($ RenderThumb {:key (.-index %)
+                                             & (-> (b/bean %)
+                                                   (update :props b/bean)
+                                                   (update-in [:props :style] b/bean))})})
      (d/output (let [[init end] values] (str init "-" end))))))
 
 
