@@ -23,9 +23,9 @@
 
 (defnc RenderTrack
   [{:keys [props children values]}]
+  (js/console.log values)
   (d/div {:style (merge (:style props)
-                        {:width "100%" :height 36 :display "flex"})
-          & (dissoc props :style)}
+                          {:width "100%" :height 36 :display "flex"})}
          (d/div {:id "asdia9di9sid9as"
                  :ref (:ref props)
                  :style {:height 5
@@ -42,7 +42,7 @@
 
 (defnc RenderThumb
   [{:keys [props isDragged]}]
-  (d/div {:props props :style (merge (:style props)
+  (d/div {:style (merge (:style props)
                         {:height 42
                          :width 42
                          :border-radius 4
