@@ -1,6 +1,6 @@
 # Map Science (WIP)
 
-Is the Clojurescript verion with [Helix](https://github.com/Lokeh/helix), Pigeon and React Range of https://github.com/f1729/science-timeline.
+Is the Clojurescript version with [Helix](https://github.com/Lokeh/helix), Pigeon and React Range of https://github.com/f1729/science-timeline.
 
 This is for learning!
 
