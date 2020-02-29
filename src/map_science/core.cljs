@@ -90,12 +90,11 @@
                   :on-click #(openData scientist)})))))
 
 (defnc App []
-  (let [[state set-state] (hooks/use-state {:name "Helix User"})]
-    (d/div
-     (d/h1 "Science Timeline!!")
-     ;; create elements out of components
-     ($ AppMap {:scientists scientists})
-     ($ RangeComponent))))
+  (d/div
+    (d/h1 "Science Timeline!!")
+    ;; create elements out of components
+    ($ AppMap {:scientists scientists})
+    ($ RangeComponent)))
 
 
 (defn ^:export start
