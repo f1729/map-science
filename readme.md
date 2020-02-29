@@ -26,6 +26,18 @@ Navigate to http://localhost:8888
 - [pigeon-maps](https://github.com/mariusandra/pigeon-maps)
 
 
+## Implementation
+
+My goal for this project is cover some topics of modern web development in react, which are:
+
+- Import packages ✅
+- Use this packages when have a lot of interop ✅
+- Use styled-components 🚧
+- Use modularization 
+
+Note: If you think that there are any topic that I should include, please open a issue.
+
+
 ## Support
 
 - [Slack](https://clojurians.net) channel: `#helix`
