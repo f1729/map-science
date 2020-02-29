@@ -28,4 +28,4 @@ Navigate to http://localhost:8888
 
 ## Support
 
-- [Slack](https://clojurians.net) channel: `#hx`
+- [Slack](https://clojurians.net) channel: `#helix`
