@@ -71,10 +71,10 @@
                          :background-color (if isDragged "#548BF4" "#CCC")}})))
 
 ;; Creating own React hooks
-(defn use-local-state [tkey, initial]
-  (let [[v, u] (hooks/use-state initial)] ;; updater
+(defn use-local-state [tkey initial]
+  (let [[v, u] (hooks/use-state (if (js/localStorage.getItem tkey) (js/JSON.parse (js/localStorage.getItem tkey)) initial))]
     (hooks/use-effect [v]
-      (js/localStorage.setItem tkey v))
+      (js/localStorage.setItem tkey (js/JSON.stringify v)))
     [v u]))
 
 (defnc RangeComponent []
