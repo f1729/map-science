@@ -70,10 +70,15 @@
                          :width 5
                          :background-color (if isDragged "#548BF4" "#CCC")}})))
 
-
+;; Creating own React hooks
+(defn use-local-state [tkey, initial]
+  (let [[v, u] (hooks/use-state initial)] ;; updater
+    (hooks/use-effect [v]
+      (js/localStorage.setItem tkey v))
+    [v u]))
 
 (defnc RangeComponent []
-  (let [[values set-values] (hooks/use-state #js [1409 1509])]
+  (let [[values set-values] (use-local-state "range" #js [1409 1509]) ]
     ;; The library we’re using uses a very complex pattern here
     ;; you hand it a function that returns a component, and then it gives you the props to pass to your component
     ;; If you are using external library components that pass you data/props/etc.
