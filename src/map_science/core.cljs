@@ -45,7 +45,7 @@
                          :border-radius 4
                          :display "flex"
                          :align-self "center"
-                         ;; Remember this functions is from a NPM library
+                         ;; Remember this function is from a NPM library
                          ;; you need to pass js objects, use #js
                          :background (getTrackBackground
                                       #js {:values values
@@ -122,9 +122,17 @@
                   :style {:width 20 :height 20 :border-radius "50%"}
                   :on-click #(openData scientist)})))))
 
+(defnc Navbar []
+  (d/div {:style {:display "flex"
+                   :justify-content "center"
+                   :box-shadow "1px 1px 2px #c7c7c7"
+                   :position "relative"
+                   :z-index 1}}
+         (d/h1 {:style { :color "#47556f"} } "Science Timeline")))
+
 (defnc App []
   (d/div
-    (d/h1 "Science Timeline!!")
+    ($ Navbar)
     ;; create elements out of components
     ($ AppMap {:scientists scientists})
     ($ RangeComponent)))
