@@ -44,5 +44,5 @@ Note: If you think that there are any topic that I should include, please open a
 
 ## Acknowledgement
 
-- Will Acton, creador of helix. For his guidance and patience in several of the explanations here.
-- Dante Calderon, active contributor. For his help to implement more useful examples.
+- [Will Acton](https://github.com/Lokeh), creador of Helix. For his guidance and patience in several of the explanations here.
+- [Dante Calderon](https://github.com/dantehemerson), active contributor. For his help to implement more useful examples.
