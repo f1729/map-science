@@ -69,11 +69,26 @@
          (d/div {:style {:height 16
                          :width 5
                          :background-color (if isDragged "#548BF4" "#CCC")}})))
+                         
+(defn get-local-storage-item [key]
+  (.parse js/JSON (.getItem js/localStorage key)))
 
+(defn set-local-storage-item [key value]
+  (.setItem js/localStorage key (.stringify js/JSON value)))
 
+;; Creating own React hooks
+(defn use-local-state [key initialValue]
+  (let [[state set-state] 
+    (hooks/use-state 
+      (if-let [localValue (get-local-storage-item key)] 
+        localValue 
+        initialValue))]
+    (hooks/use-effect [state]
+      (set-local-storage-item key state))
+    [state set-state]))
 
 (defnc RangeComponent []
-  (let [[values set-values] (hooks/use-state #js [1409 1509])]
+  (let [[values set-values] (use-local-state "range" #js [1409 1509]) ]
     ;; The library we’re using uses a very complex pattern here
     ;; you hand it a function that returns a component, and then it gives you the props to pass to your component
     ;; If you are using external library components that pass you data/props/etc.
