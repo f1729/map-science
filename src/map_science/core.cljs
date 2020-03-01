@@ -13,7 +13,7 @@
             ;; For it, in case :as throw an error, use (js/console.log ains)
             ;; to see what kind of exportation have.
             ["pigeon-maps" :as Map]
-            ["pigeon-overlay" :as Overlay]
+            ["pigeon-overlay" :default Overlay]
             ["react-dom" :as rdom]
             ["react-range" :as rrange :refer [getTrackBackground Range]]
             ["react-router-dom" :as rr]))
