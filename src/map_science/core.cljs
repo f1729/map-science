@@ -4,6 +4,14 @@
             [helix.core :refer [$ <> defnc]]
             [helix.dom :as d]
             [helix.hooks :as hooks]
+            ;; How import libraries?
+            ;; Import a NPM library is really easy,
+            ;; just want to type the name and use :as
+            ;; maybe you will have to use :default instead of :as
+            ;; depends of how this library was did exported.
+            ;; ["some-library" :as ains]
+            ;; For it, in case :as throw an error, use (js/console.log ains)
+            ;; to see what kind of exportation have.
             ["pigeon-maps" :as Map]
             ["pigeon-overlay" :as Overlay]
             ["react-dom" :as rdom]
@@ -18,6 +26,7 @@
    {:id 18021
     :name "Luis C."
     :bplace_geonameid {:lat 27.783 :lon 1.25}}])
+
 
 (defn openData [scientist] (js/console.log (:name scientist)))
 
@@ -79,6 +88,9 @@
 
 (defnc AppMap
   [{:keys [scientists]}]
+  ;; props to NPM Libraries need JS Objects,
+  ;; so you need to use #js before pass a vector or a list
+  ;; values like strings, numbers don't need that.
   ($ Map {:width 1000 :height 800 :center #js [50.8 4.69] :zoom 2.3}
      (for [[index scientist] (map-indexed vector scientists)]
        ($ Overlay
