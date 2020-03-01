@@ -41,3 +41,7 @@ Note: If you think that there are any topic that I should include, please open a
 ## Support
 
 - [Slack](https://clojurians.net) channel: `#helix`
+
+## Acknowledgement
+
+- Will Acton, creador of helix. For his guidance and patience in several of the explanations here.
