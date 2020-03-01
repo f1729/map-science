@@ -45,7 +45,7 @@
                          :border-radius 4
                          :display "flex"
                          :align-self "center"
-                         ;; Remember this functions is from a NPM library
+                         ;; Remember this function is from a NPM library
                          ;; you need to pass js objects, use #js
                          :background (getTrackBackground
                                       #js {:values values
