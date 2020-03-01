@@ -28,7 +28,7 @@ Navigate to http://localhost:8888
 
 ## Implementation
 
-My goal for this project is cover some topics of modern web development in react, which are:
+My goal for this project is cover some topics of modern web development in React, which are:
 
 - Import packages ✅
 - Deal with interop when packages have a lot of that ✅
