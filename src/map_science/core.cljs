@@ -32,7 +32,10 @@
 
 (defnc RenderTrack
   [{:keys [props children values]}]
-  (js/console.log values)
+  ;; Here is the classic style="{{ ...props.style, height: 100, width: 100 }}"
+  ;; We don't have ... operator in clojure but we have the merge function
+  ;; so first you need to get the 'style' from props (:style props)
+  ;; and then merge them with new values that you want to add.
   (d/div {:style (merge (:style props)
                           {:width "100%" :height 36 :display "flex"})}
          (d/div {:id "asdia9di9sid9as"
@@ -42,6 +45,8 @@
                          :border-radius 4
                          :display "flex"
                          :align-self "center"
+                         ;; Remember this functions is from a NPM library
+                         ;; you need to pass js objects, use #js
                          :background (getTrackBackground
                                       #js {:values values
                                            :colors #js ["#CCC" "#548BF4" "#CCC"]
@@ -69,6 +74,17 @@
 
 (defnc RangeComponent []
   (let [[values set-values] (hooks/use-state #js [1409 1509])]
+    ;; The library we’re using uses a very complex pattern here
+    ;; you hand it a function that returns a component, and then it gives you the props to pass to your component
+    ;; If you are using external library components that pass you data/props/etc.
+    ;; frequently, then you will need to handle that data appropriately
+    ;; If you want to dynamically pass props to a component in helix, it must be a CLJS map-like thing.
+
+    ;; so the complicated mess is boiled down to:
+    ;;  1. library gives you props data
+    ;;  2. turn props data into a CLJS map structure
+    ;;  3. pass it to your component
+    ;; when you run into patterns like that, then yes you’ll probably want to use cljs-bean
     (d/div
      ($ Range {:values values
                :step 100
