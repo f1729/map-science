@@ -70,19 +70,21 @@
                          :width 5
                          :background-color (if isDragged "#548BF4" "#CCC")}})))
                          
-(defn getLocalStorageItem
-  [key]
+(defn get-local-storage-item [key]
   (js/JSON.parse (js/localStorage.getItem key)))
+
+(defn set-local-storage-item [key value]
+  (js/localStorage.setItem key (js/JSON.stringify value)))
 
 ;; Creating own React hooks
 (defn use-local-state [key initialValue]
-  (let [[state, set-state] 
+  (let [[state set-state] 
     (hooks/use-state 
-      (if-let [localValue (getLocalStorageItem key)] 
+      (if-let [localValue (get-local-storage-item key)] 
         localValue 
         initialValue))]
     (hooks/use-effect [state]
-      (js/localStorage.setItem key (js/JSON.stringify state)))
+      (set-local-storage-item key state))
     [state set-state]))
 
 (defnc RangeComponent []
