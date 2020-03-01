@@ -1,11 +1,11 @@
 (ns map-science.core
   (:require	[clojure.string :as string]
             [cljs-bean.core :as b]
-            [helix.core :as hx :refer [$ <> defnc]]
+            [helix.core :refer [$ <> defnc]]
             [helix.dom :as d]
             [helix.hooks :as hooks]
             ["pigeon-maps" :as Map]
-            ["pigeon-overlay" :default Overlay]
+            ["pigeon-overlay" :as Overlay]
             ["react-dom" :as rdom]
             ["react-range" :as rrange :refer [getTrackBackground Range]]
             ["react-router-dom" :as rr]))
