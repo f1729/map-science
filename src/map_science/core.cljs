@@ -71,10 +71,10 @@
                          :background-color (if isDragged "#548BF4" "#CCC")}})))
                          
 (defn get-local-storage-item [key]
-  (js/JSON.parse (js/localStorage.getItem key)))
+  (.parse js/JSON (.getItem js/localStorage key)))
 
 (defn set-local-storage-item [key value]
-  (js/localStorage.setItem key (js/JSON.stringify value)))
+  (.setItem js/localStorage key (.stringify js/JSON value)))
 
 ;; Creating own React hooks
 (defn use-local-state [key initialValue]
