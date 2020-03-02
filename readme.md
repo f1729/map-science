@@ -1,10 +1,9 @@
 # Map Science (WIP)
+> ClojureScript app to learn React development.
 
 Is the Clojurescript version with [Helix](https://github.com/Lokeh/helix), Pigeon and React Range of https://github.com/f1729/science-timeline.
 
 This is for learning!
-
-> ClojureScript optimized for modern React development.
 
 ## Quick start
 
