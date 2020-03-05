@@ -34,7 +34,8 @@ My goal for this project is cover some topics of modern web development in React
 - Use Hooks and make hooks. ✅
 - Use js/DOM functions like localStorage and use their methods. ✅ 
 - Use styled-components 🚧
-- Use modularization 
+- Use modularization
+- Consume an API
 
 Note: If you think that there are any topic that I should include, please open a issue.
 
