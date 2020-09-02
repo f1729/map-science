@@ -37,7 +37,7 @@ My goal for this project is cover some topics of modern web development in React
 - Use modularization
 - Consume an API
 
-Note: If you think that there are any topic that I should include, please open a issue.
+Note: If you think there is a topic I should include, please open a issue.
 
 
 ## Support
